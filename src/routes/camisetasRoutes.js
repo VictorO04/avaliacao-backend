@@ -1,9 +1,13 @@
 import express from "express";
-import {getAllCamisetas, getCamisetaById} from "../controllers/camisetasController.js";
+import {getAllCamisetas, getCamisetaById,getCamisetaPorTema, getCamisetaPorTamanho, getCamisetaPorCategoria, getCamisetaEmEstoque} from "../controllers/camisetasController.js";
 
 const router = express.Router();
 
 router.get("/", getAllCamisetas);
-router.get("/:id", getCamisetaById);
+router.get("/id/:id", getCamisetaById);
+router.get("/tema/:tema", getCamisetaPorTema);
+router.get("/tamanho/:tamanho", getCamisetaPorTamanho);
+router.get("/categoria/:categoria", getCamisetaPorCategoria);
+router.get("/em-estoque", getCamisetaEmEstoque);
 
 export default router;

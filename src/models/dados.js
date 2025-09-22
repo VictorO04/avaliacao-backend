@@ -7,7 +7,7 @@ const camisetas = [
       "marca": "GeekWear",
       "preco": 59.90,
       "material": "Algodão 100%",
-      "categoria": "TI",
+      "categoria": "Masculina",
       "estoque": 25
     },
     {
@@ -18,7 +18,7 @@ const camisetas = [
       "marca": "FantasyTees",
       "preco": 69.90,
       "material": "Poliéster",
-      "categoria": "Cinema",
+      "categoria": "Unissex",
       "estoque": 12
     },
     {
@@ -29,7 +29,7 @@ const camisetas = [
       "marca": "SciFiThreads",
       "preco": 75.00,
       "material": "Algodão Penteado",
-      "categoria": "Cinema",
+      "categoria": "Feminina",
       "estoque": 8
     },
     {
@@ -40,7 +40,7 @@ const camisetas = [
       "marca": "AnimeStyle",
       "preco": 49.90,
       "material": "Malha Fria",
-      "categoria": "Animes",
+      "categoria": "Feminina",
       "estoque": 30
     },
     {
@@ -51,8 +51,8 @@ const camisetas = [
       "marca": "GameOn",
       "preco": 55.00,
       "material": "Algodão 100%",
-      "categoria": "Jogos",
-      "estoque": 18
+      "categoria": "Masculina",
+      "estoque": 0
     },
     {
       "id": 6,
@@ -62,7 +62,7 @@ const camisetas = [
       "marca": "GeekWear",
       "preco": 65.00,
       "material": "Poliéster",
-      "categoria": "Cinema",
+      "categoria": "Masculina",
       "estoque": 15
     },
     {
@@ -73,8 +73,8 @@ const camisetas = [
       "marca": "TechThreads",
       "preco": 62.50,
       "material": "Dry Fit",
-      "categoria": "Tecnologia",
-      "estoque": 7
+      "categoria": "Unissex",
+      "estoque": 0
     },
     {
       "id": 8,
@@ -84,7 +84,7 @@ const camisetas = [
       "marca": "AnimeStyle",
       "preco": 70.00,
       "material": "Algodão Penteado",
-      "categoria": "Animes",
+      "categoria": "Masculina",
       "estoque": 22
     },
     {
@@ -95,7 +95,7 @@ const camisetas = [
       "marca": "GameOn",
       "preco": 59.90,
       "material": "Algodão 100%",
-      "categoria": "Jogos",
+      "categoria": "Infantil",
       "estoque": 10
     },
     {
@@ -106,8 +106,8 @@ const camisetas = [
       "marca": "FantasyTees",
       "preco": 79.90,
       "material": "Poliéster",
-      "categoria": "Literatura",
-      "estoque": 5
+      "categoria": "Unissex",
+      "estoque": 0
     }
   ];
 
