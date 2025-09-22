@@ -256,4 +256,35 @@ const updateCamiseta = (req, res) => {
     });
 }
 
-export {getAllCamisetas, getCamisetaById, getCamisetaPorTema, getCamisetaPorTamanho, getCamisetaPorCategoria, getCamisetaEmEstoque, createCamiseta, updateCamiseta}
+const deleteCamiseta = (req, res) => {
+    const {id} = req.params;
+
+    if (isNaN(id)) {
+        return res.status(200).json({
+            success: false,
+            message: "O id deve ser válido"
+        });
+    }
+
+    const idParaApagar = parseInt(id);
+
+    const camisetaParaApagar = camisetas.find(c => c.id === idParaApagar);
+
+    if (!camisetaParaApagar) {
+        return res.status(404).json({
+            success: false,
+            message: "Camiseta com este id não existe"
+        });
+    }
+
+    const camisetaFiltrada = camisetas.filter(c => c.id !== idParaApagar);
+
+    camisetas.splice(0, camisetas.length, ...camisetaFiltrada);
+
+    return res.status(200).json({
+        success: true,
+        message: "A camiseta foi removida com sucesso"
+    });
+}
+
+export {getAllCamisetas, getCamisetaById, getCamisetaPorTema, getCamisetaPorTamanho, getCamisetaPorCategoria, getCamisetaEmEstoque, createCamiseta, updateCamiseta, deleteCamiseta}
