@@ -103,4 +103,157 @@ const getCamisetaEmEstoque = (req, res) => {
     }
 }
 
-export {getAllCamisetas, getCamisetaById, getCamisetaPorTema, getCamisetaPorTamanho, getCamisetaPorCategoria, getCamisetaEmEstoque}
+//Creat
+
+const createCamiseta = (req, res) => {
+    const {design, tema, tamanho, marca, preco, material, categoria, estoque} = req.body;
+    const tamanhos = ["P", "M", "G", "GG", "XG"];
+
+    if (!design) {
+        return res.status(400).json({
+            success: false,
+            message: "Design é obrigatório para adicionar uma nova camiseta"
+        });
+    }
+    if (!tema) {
+        return res.status(400).json({
+            success: false,
+            message: "Tema é obrigatório para adicionar uma nova camiseta"
+        });
+    }
+    if (!tamanho) {
+        return res.status(400).json({
+            success: false,
+            message: "Tamanho é obrigatório para adicionar uma nova camiseta"
+        });
+    }
+    if (!marca) {
+        return res.status(400).json({
+            success: false,
+            message: "Marca é obrigatório para adicionar uma nova camiseta"
+        });
+    }
+    if (!preco) {
+        return res.status(400).json({
+            success: false,
+            message: "Preco é obrigatório para adicionar uma nova camiseta"
+        });
+    }
+    if (!material) {
+        return res.status(400).json({
+            success: false,
+            message: "Material é obrigatório para adicionar uma nova camiseta"
+        });
+    }
+    if (!categoria) {
+        return res.status(400).json({
+            success: false,
+            message: "Categoria é obrigatório para adicionar uma nova camiseta"
+        });
+    }
+    if (!estoque) {
+        return res.status(400).json({
+            success: false,
+            message: "Estoque é obrigatório para adicionar uma nova camiseta"
+        });
+    }
+
+    //Regras de negócio
+
+    if (!tamanhos.includes(tamanho)) {
+        return res.status(400).json({
+            success: false,
+            message: `O tamanho "${tamanho} não está incluso. Tamanhos: ${tamanhos.join(", ")}`
+        });
+    }
+
+    if (estoque < 0) {
+        return res.status(400).json({
+            success: false,
+            message: `O valor do estoque não pode ser um valor negativo`
+        });
+    }
+
+    const novaCamiseta = {
+        id: camisetas.length + 1,
+        design,
+        tema,
+        tamanho,
+        marca,
+        preco,
+        material,
+        categoria,
+        estoque
+    }
+
+    camisetas.push(novaCamiseta);
+
+    res.status(201).json({
+        success: true,
+        message: "Nova camiseta adicionada com sucesso",
+        data: novaCamiseta
+    });
+}
+
+const updateCamiseta = (req, res) => {
+    const id = parseInt(req.params.id);
+    const {design, tema, tamanho, marca, preco, material, categoria, estoque} = req.body;
+    const tamanhos = ["P", "M", "G", "GG", "XG"];
+
+    if (isNaN(id)) {
+        return res.status(400).json({
+            success: false,
+            message: "O id deve ser válido"
+        });
+    }
+
+    const camisetaExiste = camisetas.find(c => c.id === id);
+
+    if (!camisetaExiste) {
+        return res.status(404).json({
+            success: false,
+            message: "Esta camiseta não existe"
+        });
+    }
+
+    if (!tamanhos.includes(tamanho)) {
+        return res.status(400).json({
+            success: false,
+            message: `O tamanho "${tamanho} não está incluso. Tamanhos: ${tamanhos.join(", ")}`
+        });
+    }
+
+    if (estoque < 0) {
+        return res.status(400).json({
+            success: false,
+            message: `O valor do estoque não pode ser um valor negativo`
+        });
+    }
+
+    const camisetaAtualizada = camisetas.map(camisetaExiste => camisetaExiste.id === id
+        ? {
+            ...camisetaExiste,
+            ...(design && {design}),
+            ...(tema && {tema}),
+            ...(tamanho && {tamanho}),
+            ...(marca && {marca}),
+            ...(preco && {preco}),
+            ...(material && {material}),
+            ...(categoria && {categoria}),
+            ...(estoque && {estoque})
+        }
+        : camisetaExiste
+    );
+
+    camisetas.splice(0, camisetas.length, ...camisetaAtualizada);
+
+    const camisetaAtualiz = camisetas.find(c => c.id === id);
+
+    res.status(200).json({
+        success: true,
+        message: "Camiseta atualizada com sucesso",
+        data: camisetaAtualiz
+    });
+}
+
+export {getAllCamisetas, getCamisetaById, getCamisetaPorTema, getCamisetaPorTamanho, getCamisetaPorCategoria, getCamisetaEmEstoque, createCamiseta, updateCamiseta}
